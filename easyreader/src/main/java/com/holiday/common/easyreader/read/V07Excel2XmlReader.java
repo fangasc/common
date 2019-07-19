@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.util.Iterator;
 import java.util.logging.Logger;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xssf.eventusermodel.XSSFReader;
@@ -16,6 +15,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
+import com.holiday.common.easyreader.common.EasyReaderException;
 import com.holiday.common.easyreader.read.base.AbstractReader;
 import com.holiday.common.easyreader.read.base.ILineFormatter;
 import com.holiday.common.easyreader.read.base.IReaderFacade;
@@ -31,7 +31,7 @@ public class V07Excel2XmlReader extends AbstractReader{
 	}
 	
 	@Override
-	public void read() throws Exception {
+	public void read() throws EasyReaderException {
 		log.info("[easy-reader] excel2xml reader start.");
 		try {
 			OPCPackage pkg = OPCPackage.open(getInputStream());
@@ -45,26 +45,18 @@ public class V07Excel2XmlReader extends AbstractReader{
 				parser.parse(sheetSource);
 				close(sheetStream);
 			}
-		} catch (InvalidFormatException e) {
-			throw e;
-		} catch (IOException e) {
-			throw e;
-		} catch (OpenXML4JException e) {
-			throw e;
-		} catch (SAXException e) {
-			throw e;
-		} catch(Exception e) {
-			throw e;
+		} catch (IOException | OpenXML4JException | SAXException e) {
+			throw new EasyReaderException(e);
 		}
 		log.info("[easy-reader] excel2xml reader end.");
 	}
 
-	public void close(InputStream is) throws Exception {
+	public void close(InputStream is) throws IOException {
 		try {
 			if (is != null) {
 				is.close();
 			}
-		} catch (Exception e) {
+		} catch (IOException e) {
 			throw e;
 		}
 	}

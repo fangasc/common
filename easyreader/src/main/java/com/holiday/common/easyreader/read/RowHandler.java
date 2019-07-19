@@ -20,6 +20,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.holiday.common.easyreader.common.LetterUtil;
+import com.holiday.common.easyreader.read.base.EasyReaderContext;
 
 /**
  * 
@@ -78,18 +79,18 @@ public class RowHandler extends DefaultHandler{
 		lastContents += new String(ch, start, length);
 	}
 	
-	private List<String> encapList(TreeMap<Integer, String> lineMap) {
-		List<String> list = new ArrayList<>();
+	private String encapList(TreeMap<Integer, String> lineMap) {
 		if(lineMap == null || lineMap.isEmpty()) {
-			return list;
+			return "";
 		}
+		
 		Map<Integer, String> newMap = new TreeMap<>();
 		for(int i = 1; i<= lineMap.lastKey(); i++) {
 			String val = lineMap.get(i);
 			newMap.put(i, val == null || val.length() == 0 ? "" : val);
 		}
-		list = newMap.entrySet().stream().map(entry -> entry.getValue()).collect(Collectors.toList());
-		return list;
+		List<String> list = newMap.entrySet().stream().map(entry -> entry.getValue()).collect(Collectors.toList());
+		return String.join(EasyReaderContext.get().split, list);
 	}
 	
 	/**

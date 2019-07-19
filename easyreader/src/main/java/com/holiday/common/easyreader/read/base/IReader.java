@@ -2,6 +2,8 @@ package com.holiday.common.easyreader.read.base;
 
 import java.io.Closeable;
 
+import com.holiday.common.easyreader.common.EasyReaderException;
+
 /**
  * 
  * @ClassName:  IReader   
@@ -12,6 +14,6 @@ import java.io.Closeable;
  */
 public interface IReader extends Closeable{
 
-	public void read() throws Exception;
+	public void read() throws EasyReaderException;
 	
 }

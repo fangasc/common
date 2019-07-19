@@ -1,7 +1,5 @@
 package com.holiday.common.easyreader.read.base;
 
-import java.util.List;
-
 /**
  * 
  * @ClassName:  IReaderFacade   
@@ -13,6 +11,6 @@ import java.util.List;
 @FunctionalInterface
 public interface IReaderFacade {
 
-	public void readLine(List<String> line, EasyReaderContext context);
+	public void readLine(String line, EasyReaderContext context);
 	
 }

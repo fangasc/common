@@ -15,6 +15,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import com.holiday.common.easyreader.common.LogUtil;
 import com.holiday.common.easyreader.read.base.AbstractReader;
+import com.holiday.common.easyreader.read.base.EasyReaderContext;
 import com.holiday.common.easyreader.read.base.ILineFormatter;
 import com.holiday.common.easyreader.read.base.IReaderFacade;
 
@@ -53,7 +54,7 @@ public class V03ExcelReader extends AbstractReader{
 						list.add(df.formatCellValue(cell));
 					}
 
-					filterFlush(list);
+					filterFlush(String.join(EasyReaderContext.get().split, list));
 				}
 			}
 			LogUtil.logInfo(log, "parser complete.");

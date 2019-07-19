@@ -8,6 +8,9 @@ package com.holiday.common.easyreader.read.base;
  */
 public class EasyReaderContext {
 	
+	private final String DEFAULT_SPLIT = ",";
+	public String split = DEFAULT_SPLIT;
+	
 	
 	public static EasyReaderContext get() {
 		return threadLocal.get();

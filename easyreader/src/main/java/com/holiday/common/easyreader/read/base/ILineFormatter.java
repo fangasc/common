@@ -1,7 +1,5 @@
 package com.holiday.common.easyreader.read.base;
 
-import java.util.List;
-
 /**
  * 
  * @ClassName:  LineFormatter   
@@ -13,5 +11,5 @@ import java.util.List;
 @FunctionalInterface
 public interface ILineFormatter { 
 
-	public void formatter(List<String> line, EasyReaderContext context);
+	public void formatter(String line, EasyReaderContext context);
 }

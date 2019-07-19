@@ -1,7 +1,6 @@
 package com.holiday.common.easyreader.read.base;
 
 import java.io.InputStream;
-import java.util.List;
 import java.util.logging.Logger;
 
 import com.holiday.common.easyreader.common.LogUtil;
@@ -43,12 +42,11 @@ public abstract class AbstractReader implements IReader{
 		LogUtil.logInfo(log, "close inputStream complete.");
 	}
 	
-	public void filterFlush(List<String> line) {
+	public void filterFlush(String line) {
 		if(operator != null) {
 			operator.formatter(line, context);
 		}
 		facade.readLine(line, context);
-		line.clear();
 	}
 	
 	public IReaderFacade getFacade() {
